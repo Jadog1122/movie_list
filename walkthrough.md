@@ -155,3 +155,16 @@ Then we need to display this data:
 and in each we pass value into it using the data we get in the first two steps. 
 
 > remember the `{}` when we pass value in the`<MovieList values={value}>`
+
+## Step 7: add more functionality
+- ADD to personalized watch list => a button on each MovieCard add it to the list.
+- Remove from the list => a button to remove it from the list
+- WacthList component => a personalized list that show saved movies
+- handle reload => the list persists after reloads
+  
+>When we are dealing with Watchlist components, we may thinking can we reuse the `MovieCard` component. 
+> However, as we are adding a button in the MovieCard, if we use this in the WatchList. each stored Movie will still have a add to my list button which is not optimal case.
+> Also we are interested in add a remove button in this case for watchlist component
+> If there is a technique that we can dynamic render what we want in this compnent so that we can reuse it in different situations
+
+**We use `&&` in the MovieCard component to handle conditional rendering!**
