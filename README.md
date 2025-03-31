@@ -168,3 +168,14 @@ and in each we pass value into it using the data we get in the first two steps.
 > If there is a technique that we can dynamic render what we want in this compnent so that we can reuse it in different situations
 
 **We use `&&` in the MovieCard component to handle conditional rendering!**
+
+Basic Skeleton in the new feature:
+- in MovieCard, we try to reuse in different situation: one for MovieList that display what we search for and one for WatchList that what we try to store.
+
+        {onAdd && <button.....>ADD</button>} 
+        {onRemove && <button>...}
+
+- In MovieList we only add one parameter `onAdd` to meet the requiremnt for dynamic rendering.
+- in WatchList same we only add onRemove
+  
+In this case, so we can have differnt <MovieCard /> that accept diffent scenarios with onAdd and onRemove. what we need to rememver is to handle different case in MovieCard with `&&`
