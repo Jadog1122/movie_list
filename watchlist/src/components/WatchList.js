@@ -1,7 +1,7 @@
 import React from "react";
 import MovieCard from "./MovieCard";
 
-const WatchList = ({savedmovies, onRemove}) => {
+const WatchList = ({savedmovies, onRemove, clearSavedMovies}) => {
     return(
         <div>
             <h2>My Movie Watch List</h2>
@@ -12,6 +12,7 @@ const WatchList = ({savedmovies, onRemove}) => {
             ))
 
         }
+        <button onClick={clearSavedMovies}>Clear WatchList</button>
         </div>
     );
 }

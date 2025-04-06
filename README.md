@@ -179,3 +179,82 @@ Basic Skeleton in the new feature:
 - in WatchList same we only add onRemove
   
 In this case, so we can have differnt <MovieCard /> that accept diffent scenarios with onAdd and onRemove. what we need to rememver is to handle different case in MovieCard with `&&`
+
+## Question until here:
+**1. How `npm start` works**
+   1. we are using a script defined in `package.json`
+      1. it start a developement server using Webpack Dev Server
+      2. it compiles React code
+      3. it serves it from memory, not disk
+      4. it auto refreshes if you save any file
+   
+**2. How to customize PORT to run on?**
+   1. Temporarilt change port when run
+        
+            PORT=5000 npm start
+   2. Set it permanetly in `.env` file
+      1. create a file called .env in your project root (same level as package.json)
+      2. ADD `PORT=5001`
+      3. Save and restart your sever
+   3. We also can cstomize browser too in `.env`
+      1. `BROWSER=edge`
+
+## Step 7: Add `.env` file
+: it stands for environment file. it is a simple text file where you define environment variables - little pieces of data that your app can read at runtime without hardcoding them into your code
+
+LIKE: API ; PORT ; different settings in development vs. production(???); hiding sensitive info from GITHUB ....
+
+**NOTE**:
+
+ALL variable names must start with `REACT_APP_` to be available in your code!
+
+    process.env.REACT_APP_OMDB_KEY
+
+ADD .env into `.gitignore`!!
+
+After Changed be sure to resteart the server in terminal!
+
+## Step 8: Set up `localStorage` => will upgrade to backend database later after React refresh
+: it let the app remember things after the page is refreshed
+- It is a built-in browser API that lets you store key-value pairs as trings, and it persists evenafter the page reloads or the browser restarts
+  
+in the app.js, we already have
+
+    const [saveMovies, setSaveMovies] = useState([]);
+
+we will now watch saveMovies with `useEffect` and save it to localStorage;
+
+    import{useEffect} from 'react'
+
+    useEffect(() => {
+        localStorage.setItem('watchlist', JSON.stringify(savedMovies));
+    }, [savedMovies])
+
+- Everytime, `savedMovies` changes, this runs
+- it stores the whole list in localStorage under the key 'watchlist'
+- we use `JSON.stringify` to turn the array into a string (because localStorage only accept storing strings)
+
+> What does `useEffect` does?
+>
+>let you perform side efects in function components - like data fetching, DOM updates and logging or saving to localStorage
+it runs after the component renders, and can be trigger again **if a dependency changes**
+
+> what we means after i means "Do this after finishes rendering."
+
+This part in our code tells that: "HEY everytime the dependency which is `[savedMovies]` changes, i need to run this function again which is the function saves your updated watchlist to localStorage."
+
+Without dependency, it would run on every render, even if nothing changed.
+
+## Continuation: Set a Clean UP Button for localStorage
+- we can do by two way:
+  - `.removeItem('...')`
+  - `.clear()`
+
+We here to add a button to remove the list.
+
+    <button onClick={handleClearWatchList}>Clear WatchList</button>
+
+    const handleClearWatchList = () => {
+        setSavedMovies([]);
+        localStorage.removeItem('watchlist');
+    }
