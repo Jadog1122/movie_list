@@ -258,3 +258,59 @@ We here to add a button to remove the list.
         setSavedMovies([]);
         localStorage.removeItem('watchlist');
     }
+
+## Introduction to Tailwind(polish UI)
+
+- first step: we need to install Tailwind in create react app
+  
+        npm install -D tailwindcss postcss autoprefixer
+        npx tailwindcss init -p
+- we need to import it first in the index.js
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+lets dive into what does those command means:
+- `-D`: this is a dev-only tool. Donot include this in production code.
+- `tailwind`: this is framework itself, give u all the utility classes like bg-blue-500
+- `postcss`: A CSS processor - transforms ur Tailwind classes into real CSS the browser understands
+- `autoprefixer`: Adds browser-specific prefixes like -webkit- so your style works on all browsers
+- `npx`: runs a command from a package without installing it globally
+- tailwindcss init: generate something.js leys you custyomize your theme(font, color, breakpoitns)
+- `-p`: so tailwind works with postcss automatically
+
+**NOTE**: We will be using it once we switch into Vite
+
+## Introduction to Bootstrap -> easier to set up in CRA
+
+        npm install bootstrap react-bootstrap
+
+Bootstrap is a front end css framework that give you pre-built styles and components like buttons, card, grid, modals, navbars - all using simple class names
+- consistent design
+- read to use components
+- a powerful grid system for layout
+`React-Bootstrap`: import components like `<button />` `<Card />` `...`
+
+### layout system -> grid
+
+`Container`: give your page a center-aligned layout
+Bootstrap uses a 12-column grid system
+
+        <Container>
+            <Row>
+                <Col md={4}>1/3</Col>
+                <Col md={8}>2/3</Col>
+            </Row>
+        <Container>
+
+`md={4}` means "on medium screens, take up 4 of 12 columns"
+
+`m-2`: add margin (all sides)
+`mt-3`: Adds top margin
+`p-2`: add padding
+`ms-2`: Add left margin(start)
+
+### Next higher step:
+
+`xs={12}`: means full width on mobile => adapt to mobile screen size.
+`flex-column`: Stack my children vertically
+`justify-content-between`: put space between the top and bottom child so that they go to the edge;
+Even if the card height varies, the button will always stick to the bottom inside the card. And if we set the height the same, then the buttom will align horizontally.
